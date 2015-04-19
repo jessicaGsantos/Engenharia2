@@ -24,7 +24,12 @@ public class Teste {
     @Test
     public void testaCalculo(){
         Ex2 a = new Ex2();
-        assertEquals(a.Calculos(),(1,1),1);
+        assertEquals(22.22, a.Calculos(50,150), 0.1);
+    }
+    @Test
+    public void testaCalculo2(){
+        Ex2 a = new Ex2();
+        assertEquals(24.22, a.Calculos(70, 170), 0.1);
     }
     
 }
