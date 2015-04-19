@@ -1,7 +1,6 @@
 package com.br.engenharia.imc;
     //importação das classes necessárias
 //layouts para alinhamento dos componentes
-
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 //janela
@@ -43,7 +42,7 @@ public class Ex2 extends JFrame {
     //inteiros (int)
     int tipo, foto;
     //numeros de pontos flutuantes (double)
-    double altura, peso, massa;
+
     //criando um array já com os valores configurados do tipo double
     double imc_homens[] = {20.7, 26.4};
     double imc_mulheres[] = {19.1, 25.8};
@@ -74,10 +73,10 @@ public class Ex2 extends JFrame {
     private JComboBox escolha = new JComboBox(sexo);
 
     //anexando a imagem um icone de nome limpar
-    private Icon limpar = new ImageIcon(getClass().getResource("blank.gif"));
+    private Icon limpar = new ImageIcon(getClass().getResource("images/blank.gif"));
     //criando um vetor com as demais imagens
-    private Icon imagemM[] = {new ImageIcon(getClass().getResource("esqueleto.gif")), new ImageIcon(getClass().getResource("normalM.jpg")), new ImageIcon(getClass().getResource("obesa.jpg"))};
-    private Icon imagemH[] = {new ImageIcon(getClass().getResource("esqueleto.gif")), new ImageIcon(getClass().getResource("normalH.jpg")), new ImageIcon(getClass().getResource("obeso.jpg"))};
+    private Icon imagemM[] = {new ImageIcon(getClass().getResource("images/esqueleto.gif")), new ImageIcon(getClass().getResource("images/normalM.jpg")), new ImageIcon(getClass().getResource("images/obesa.jpg"))};
+    private Icon imagemH[] = {new ImageIcon(getClass().getResource("images/esqueleto.gif")), new ImageIcon(getClass().getResource("images/normalH.jpg")), new ImageIcon(getClass().getResource("images/obeso.jpg"))};
 
     //construtor de Ex2 sem argumentos
     public Ex2() {
@@ -118,13 +117,13 @@ public class Ex2 extends JFrame {
                              configure tipo=0 e vá para o método Calculos*/
                             case 0: {
                                 tipo = 0; //mulher
-                                Calculos();
+                                Calculos(Double.parseDouble(Fpeso.getText()),Double.parseDouble(Faltura.getText()));
                                 break;
                             }
                             //caso seja a segunda opção, configura tipo como 1 e vá para o método Calculos.
                             case 1: {
                                 tipo = 1; //homem
-                                Calculos();
+                                Calculos(Double.parseDouble(Fpeso.getText()),Double.parseDouble(Faltura.getText()));
                                 break;
                             }
                         }
@@ -144,15 +143,14 @@ public class Ex2 extends JFrame {
     }
 
     //método que realiza os calculos
-    private void Calculos() {
+    public double Calculos(double peso, double altura) {
+        double massa = 0;
         try //tratador de erros com try e catch
         {
             //pega e converte os caracteres em ponto flutuante do campo Faltura para a variavel altura
-            altura = Double.parseDouble(Faltura.getText());
             //converte para metros
             altura /= 100;
             //da mesma forma com Fpeso para a variável peso
-            peso = Double.parseDouble(Fpeso.getText());
             //realiza calculos
             massa = peso / (altura * altura);
             /*Se a massa corporal for menor do que o estabelecido pelo vetor configure a variável
@@ -198,6 +196,7 @@ public class Ex2 extends JFrame {
             peso = 0;
             altura = 0;
         }
+        return massa;
     }
 
     //método para limpar os dados da tela e retornar a tela ao seu tamanho original
